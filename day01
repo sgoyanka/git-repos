@@ -1,0 +1,65 @@
+// Problem 1: Complete the secondLargest function which takes in an array of numbers in input and return the second biggest number in the array. (without using sort)?
+function secondLargest(array) {
+  // Write your code here
+}
+
+// Problem 2: Complete the calculateFrequency function that takes lowercase string as input and returns frequency of all english alphabet. (using only array, no in-built function)
+function calculateFrequency(string) {
+  
+  var array = [];
+  var k=0,z=0;
+  // string="u@#d$fkj$#!kds";
+  
+  for(i = 0 ; i < string.length ; i++){
+    
+    if(array[string[i]] == 1){
+      array[string[i]]++;
+    } else{
+      array[string[i]]=1;
+    }
+    
+  }
+  for(i = 97 ; i < 123 ; i++) {
+    
+    
+    if(array[String.fromCharCode(i)] > 0){
+      console.log(String.fromCharCode(i)+" "+array[String.fromCharCode(i)]);
+    }
+  }
+ 
+  
+  //console.log(array['m']);
+return array;
+ 
+}
+
+// Problem 5: Complete the pluckName function that takes a JS Array, returns a JS Array containing only name
+
+function pluckName(unpluckedArray) {
+  
+   var array = [];
+  var j=0;
+  
+  for(var i=0 ; i < unpluckedArray.length ; i++)
+    {
+      if(unpluckedArray[i].name != null)
+        {
+          array[j]=unpluckedArray[i].name;
+          j++;
+        }
+    }
+ 
+ 
+return array;
+  // write the code here
+}
+
+// Problem 3: Complete the flatten function that takes a JS Object, returns a JS Object in flatten format (compressed)
+function flatten(unflatObject) {
+  // Write your code here
+}
+
+// Problem 4: Complete the unflatten function that takes a JS Object, returns a JS Object in unflatten format
+function unflatten(flatObject) {
+  // Write your code here
+}
