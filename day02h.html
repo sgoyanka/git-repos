@@ -6,11 +6,12 @@
  
   <script>
 
-    var array = [1,2,3,4];
+    var array = [1,2,3,4,5];
     var array2 = [];
+    var i=2;
  
- 	array2 = array.slice();   
-   array.splice(1,1);
+ 	array2 = array.slice(0,i).concat(array.slice(i+1));   
+   
 	document.write(array);
 
 	document.write(array2);
