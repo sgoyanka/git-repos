@@ -14,62 +14,148 @@
  			var birthday = form.bday;	
  			var week = form.week_year;
  			var month = form.bdaymonth;   			
-
-    		
-    		var q = new Date();
-			var m = q.getMonth();
-			var d = q.getDate();
-			var y = q.getFullYear();
-
-			var date = new Date(y,m,d);
-
-			mydate=new Date(birthday.value);
+ 			var quant = form.quantity;
+ 			var email = form.email;
+ 			var url = form.homepage;
+    		var k=0;
 
 
     		if (/^[" "]*$/.test(username.value)) {
-    		    	
-	  	 	    var error = document.getElementById('errorname');
-	
-       			error.innerHTML="Please enter your first name";
-       			error.style.color = "red";
+    		    
+    		    k++;	
+	  	 	    document.getElementById('errorname').style.visibility = "visible";	      			
        			document.getElementById('name').style.borderColor = "red";
-       			return false;
+       			
+   			}	else {
+
+   				document.getElementById('errorname').style.visibility = "hidden";
+   				document.getElementById('name').style.borderColor = "green";
+   				
    			}
-   			else if ( password.value.length < 8) {
 
-	  	 	    var error = document.getElementById('errorpass');
-	
-       			error.innerHTML="Password should be of minimum 8 characster";
-       			error.style.color = "red";
-       			document.getElementById('pass').style.borderColor = "red";
+
+    		if (!/^(ftp|https?):\/\/+(www\.)?[a-z0-9\-\.]{3,}\.[a-z]{3}$/.test(url.value)) {
+    		    
+    		    k++;	
+	  	 	    document.getElementById('errorurl').style.visibility = "visible";	      			
+       			document.getElementById('urlid').style.borderColor = "red";
+       			
+   			}	else {
+
+   				document.getElementById('errorurl').style.visibility = "hidden";
+   				document.getElementById('urlid').style.borderColor = "green";
+   				
+   			}
+
+   			if (!/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value)) {
+    		    
+    		    k++;	
+	  	 	    document.getElementById('errormail').style.visibility = "visible";	      			
+       			document.getElementById('emailid').style.borderColor = "red";
+       			
+   			}	else {
+
+   				document.getElementById('errormail').style.visibility = "hidden";
+   				document.getElementById('emailid').style.borderColor = "green";
+   				
+   			}
+
+   			if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}/.test(password.value)) {
+
+   				k++;
+	  	 	    document.getElementById('errorpass').style.visibility = "visible";
+	   			document.getElementById('pass').style.borderColor = "red";
     
-       			return false;	
+       				
+
+   			}	else {
+
+   				document.getElementById('errorpass').style.visibility = "hidden";
+   				document.getElementById('pass').style.borderColor = "green";
+   				
 
    			}
-   			else if ( mydate > date) {
 
-	  	 	    var error = document.getElementById('errorbday');
-	
-       			error.innerHTML = "date should be older than the current dates";
-       			error.style.color = "red";
-       			document.getElementById('bdayid').style.borderColor = "red";
+   			if (/^[0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]/.test(birthday.value) ) {
+
+
+    			var q = new Date();
+				var m = q.getMonth();
+				var d = q.getDate();
+				var y = q.getFullYear();
+
+				var date = new Date(y,m,d);
+
+				mydate = new Date(birthday.value);
+
+
+				if ( isNaN(mydate.getTime()) && mydate > date)  {
+   					k++;
+   					document.getElementById('errorbday').style.visibility = "visible";
+	  	 	    	document.getElementById('bdayid').style.borderColor = "red";
     
-       			return false;	
+       			}	else {
 
-   			} 
-   			else if (!/^[0-9]*$/.test(telephone.value) || telephone.value.length != 10) {
-    		    	
-	  	 	    var error = document.getElementById('errortel');
+   					document.getElementById('errorbday').style.visibility = "hidden";
+   					document.getElementById('bdayid').style.borderColor = "green";
 	
-       			error.innerHTML="Invalid Phone Number";
-       			error.style.color = "red";
-       			document.getElementById('telp').style.borderColor = "red";
-       			return false;
-   			} else{
+	  			} 
+
+   			}	else {
+
+   				document.getElementById('errorbday').style.visibility = "visible";
+   				document.getElementById('bdayid').style.borderColor = "red";
+	
+	  		} 
+
+
+   			
+   			if (!/^[0-9]*$/.test(telephone.value) || telephone.value.length != 10) {
+    		    
+    		    k++;	
+	  	 	    document.getElementById('errortel').style.visibility = "visible";
+	   			document.getElementById('telp').style.borderColor = "red";
+       			
+   			} else {
+
+   				
+   				document.getElementById('errortel').style.visibility = "hidden";
+   				document.getElementById('telp').style.borderColor = "green";
+	   			
+   			}
+
+   			if (/^[0-9]+$/.test(quant.value) ) {
+    		    
+    		    var num = parseInt(quant.value);
+
+    		    if( num >0 && num < 6) {
+    		    		
+	  	 	    	document.getElementById('errorquant').style.visibility = "hidden";
+	   				document.getElementById('quantp').style.borderColor = "green";
+	   			} else {
+
+   					k++;	
+	  	 	    	document.getElementById('errorquant').style.visibility = "visible";
+	   				document.getElementById('quantp').style.borderColor = "red";
+   				}
+       			
+   			} else {
+
+   				k++;	
+	  	 	    document.getElementById('errorquant').style.visibility = "visible";
+	   			document.getElementById('quantp').style.borderColor = "red";
+   			}
+
+   			if ( k == 0 ) {
 
    				alert("form submitted succefully");
        			return true;
 
+
+   			} else{
+
+   				return false;
+   				
    			}
     	}
     </script>
@@ -105,35 +191,40 @@
 
 	User name : <br>
     <input type="text" name = "userName"  id = "name"> <br>
-    <p id="errorname"></p>
+    <span id="errorname" style="color:red; visibility:hidden"> username is Invalid </span><br>
 
     Password : <br>
     <input type="password" name = "psw" id = "pass"> <br>
-    <p id="errorpass"></p>
+    <span id="errorpass" style="color:red; visibility:hidden"> Password is Invalid </span><br>
 
 
-    <input type="radio" name="gender" value="male" checked> Male<br>
-  	<input type="radio" name="gender" value="female"> Female<br>
-  	<input type="radio" name="gender" value="other"> Other <br>
+    E-mail: <br>
+  	<input type="email" name="email" id = "emailid"><br><br>
+  	<span id="errormail" style="color:red; visibility:hidden"> Email is Invalid </span><br>
 
-   	<input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-   	<input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+  	Quantity (between 1 and 5): <br><br>
+  	<input type="number" name="quantity" min="1" max="5" id = "quantp"><br><br>
+  	<span id="errorquant" style="color:red; visibility:hidden"> Number is Invalid </span><br>
+
+  	Add your homepage: <br>
+  	<input type="url" name="homepage" id = "urlid"><br><br>
+  	<span id="errorurl" style="color:red; visibility:hidden"> url is Invalid </span><br>
 
    	Birthday:
   	<input type="date" name="bday" id = "bdayid"><br><br>
-	<p id="errorbday"></p>
+	<span id="errorbday" style="color:red; visibility:hidden"> Birthday is Invalid </span><br>
 
   	Telephone:
   	<input type="tel" name="usrtel" id = "telp"><br>
-  	<p id="errortel"></p>
+  	<span id="errortel" style="color:red; visibility:hidden"> Number is Invalid </span><br>
 
 	Select a week:	<br>
   	<input type="week" name="week_year" id = "weekid"><br><br>
-  	<p id="errorweek"></p>
+  	<span id="errorweek" style="color:red; visibility:hidden"> entry is Invalid </span><br>
 
   	Birthday (month ): <br>
   	<input type="month" name="bdaymonth" id = "monthid"><br><br>
-  	<p id="errormonth"></p>
+	<span id="errormonth" style="color:red; visibility:hidden"> entry is Invalid </span><br>
 
     <input type="submit" value = "Send" name = "submit">
 
