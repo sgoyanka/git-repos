@@ -10,24 +10,61 @@
 
     		var username = form.userName;
     		var password = form.psw;
-
- 				   			
-
-    		var error = document.getElementById('errorname');
+    		var telephone = form.usrtel;
+ 			var birthday = form.bday;	
+ 			var week = form.week_year;
+ 			var month = form.bdaymonth;   			
 
     		
-    		if (/[a-zA-Z]+$/.test(username) {
+    		var q = new Date();
+			var m = q.getMonth();
+			var d = q.getDate();
+			var y = q.getFullYear();
+
+			var date = new Date(y,m,d);
+
+			mydate=new Date(birthday.value);
+
+
+    		if (/^[" "]*$/.test(username.value)) {
     		    	
-  	 	    	
+	  	 	    var error = document.getElementById('errorname');
+	
        			error.innerHTML="Please enter your first name";
+       			error.style.color = "red";
        			document.getElementById('name').style.borderColor = "red";
        			return false;
    			}
    			else if ( password.value.length < 8) {
 
-   				error.innerHTML="Password should be of minimum 8 characters";
+	  	 	    var error = document.getElementById('errorpass');
+	
+       			error.innerHTML="Password should be of minimum 8 characster";
+       			error.style.color = "red";
+       			document.getElementById('pass').style.borderColor = "red";
+    
        			return false;	
 
+   			}
+   			else if ( mydate > date) {
+
+	  	 	    var error = document.getElementById('errorbday');
+	
+       			error.innerHTML = "date should be older than the current dates";
+       			error.style.color = "red";
+       			document.getElementById('bdayid').style.borderColor = "red";
+    
+       			return false;	
+
+   			} 
+   			else if (!/^[0-9]*$/.test(telephone.value) || telephone.value.length != 10) {
+    		    	
+	  	 	    var error = document.getElementById('errortel');
+	
+       			error.innerHTML="Invalid Phone Number";
+       			error.style.color = "red";
+       			document.getElementById('telp').style.borderColor = "red";
+       			return false;
    			} else{
 
    				alert("form submitted succefully");
@@ -71,7 +108,7 @@
     <p id="errorname"></p>
 
     Password : <br>
-    <input type="password" name = "psw"> <br>
+    <input type="password" name = "psw" id = "pass"> <br>
     <p id="errorpass"></p>
 
 
@@ -81,6 +118,22 @@
 
    	<input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
    	<input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
+
+   	Birthday:
+  	<input type="date" name="bday" id = "bdayid"><br><br>
+	<p id="errorbday"></p>
+
+  	Telephone:
+  	<input type="tel" name="usrtel" id = "telp"><br>
+  	<p id="errortel"></p>
+
+	Select a week:	<br>
+  	<input type="week" name="week_year" id = "weekid"><br><br>
+  	<p id="errorweek"></p>
+
+  	Birthday (month ): <br>
+  	<input type="month" name="bdaymonth" id = "monthid"><br><br>
+  	<p id="errormonth"></p>
 
     <input type="submit" value = "Send" name = "submit">
 
