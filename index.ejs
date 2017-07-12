@@ -47,7 +47,7 @@
    				
    			}
 
-   			if (!/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value)) {
+   			if (!/^[a-zA-Z0-9.!#$&_~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value)) {
     		    
     		    k++;	
 	  	 	    document.getElementById('errormail').style.visibility = "visible";	      			
@@ -146,6 +146,19 @@
 	   			document.getElementById('quantp').style.borderColor = "red";
    			}
 
+   			if (!/^Week[" "][0-4][0-9][,][" "][0-9][0-9][0-9][0-9]/.test(week.value)) {
+    		    
+    		    k++;	
+	  	 	    document.getElementById('errorweek').style.visibility = "visible";	      			
+       			document.getElementById('weekid').style.borderColor = "red";
+       			
+   			}	else {
+
+   				document.getElementById('errorweek').style.visibility = "hidden";
+   				document.getElementById('weekid').style.borderColor = "green";
+   				
+   			}
+
    			if ( k == 0 ) {
 
    				alert("form submitted succefully");
@@ -199,19 +212,19 @@
 
 
     E-mail: <br>
-  	<input type="email" name="email" id = "emailid"><br><br>
+  	<input type="email" name="email" id = "emailid"><br>
   	<span id="errormail" style="color:red; visibility:hidden"> Email is Invalid </span><br>
 
   	Quantity (between 1 and 5): <br><br>
-  	<input type="number" name="quantity" min="1" max="5" id = "quantp"><br><br>
+  	<input type="number" name="quantity" min="1" max="5" id = "quantp"><br>
   	<span id="errorquant" style="color:red; visibility:hidden"> Number is Invalid </span><br>
 
   	Add your homepage: <br>
-  	<input type="url" name="homepage" id = "urlid"><br><br>
+  	<input type="url" name="homepage" id = "urlid"><br>
   	<span id="errorurl" style="color:red; visibility:hidden"> url is Invalid </span><br>
 
    	Birthday:
-  	<input type="date" name="bday" id = "bdayid"><br><br>
+  	<input type="date" name="bday" id = "bdayid"><br>
 	<span id="errorbday" style="color:red; visibility:hidden"> Birthday is Invalid </span><br>
 
   	Telephone:
@@ -219,12 +232,8 @@
   	<span id="errortel" style="color:red; visibility:hidden"> Number is Invalid </span><br>
 
 	Select a week:	<br>
-  	<input type="week" name="week_year" id = "weekid"><br><br>
+  	<input type="week" name="week_year" id = "weekid"><br>
   	<span id="errorweek" style="color:red; visibility:hidden"> entry is Invalid </span><br>
-
-  	Birthday (month ): <br>
-  	<input type="month" name="bdaymonth" id = "monthid"><br><br>
-	<span id="errormonth" style="color:red; visibility:hidden"> entry is Invalid </span><br>
 
     <input type="submit" value = "Send" name = "submit">
 
